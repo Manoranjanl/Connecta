@@ -1,0 +1,281 @@
+/*
+  UI-only stylesheet for app pages.
+  Uses design tokens from src/index.css (:root variables).
+*/
+
+.appShell {
+  min-height: 100%;
+}
+
+/* ---------- Landing ---------- */
+
+.landingPageContainer {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.landingBackdrop {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      900px 600px at 20% 20%,
+      color-mix(in srgb, var(--accent) 28%, transparent),
+      transparent 62%
+    ),
+    radial-gradient(
+      800px 500px at 80% 70%,
+      rgba(34, 197, 94, 0.14),
+      transparent 62%
+    ),
+    linear-gradient(180deg, var(--bg-0), var(--bg-1));
+}
+
+.landingOverlay {
+  position: absolute;
+  inset: 0;
+  /* reduce darkening so light mode doesn't look muddy */
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.05));
+  pointer-events: none;
+}
+
+@media (prefers-color-scheme: light) {
+  .landingOverlay {
+    /* in light mode, avoid dark overlay entirely */
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.35),
+      rgba(255, 255, 255, 0.1)
+    );
+  }
+}
+
+.landingNav {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 0; /* was 22px */
+}
+
+.brandTitle {
+  font-size: 24px; /* was 20px */
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.brandDot {
+  width: 14px; /* was 12px */
+  height: 14px; /* was 12px */
+}
+
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* slightly larger */
+}
+
+/* Optional: slightly bigger buttons in top nav only */
+.navActions .btnPrimary,
+.navActions .btnGhost {
+  padding: 12px 16px; /* was 10px 14px */
+  border-radius: 16px;
+}
+
+.landingMain {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 36px;
+  padding: 40px 0 60px;
+  align-items: center;
+  min-height: calc(100vh - 80px);
+}
+
+.heroCard {
+  padding: 28px;
+}
+
+.heroKicker {
+  font-weight: 800;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.heroTitle {
+  margin-top: 12px;
+  font-size: clamp(34px, 3.4vw, 52px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.heroTitle span {
+  color: var(--accent);
+}
+
+.heroSub {
+  margin-top: 12px;
+  max-width: 54ch;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.heroCtas {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.heroVisual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroVisual img {
+  width: min(420px, 100%);
+  height: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: var(--shadow);
+}
+
+@media (max-width: 900px) {
+  .landingMain {
+    grid-template-columns: 1fr;
+    padding-top: 24px;
+  }
+  .heroVisual {
+    order: -1;
+  }
+}
+
+/* ---------- Home ---------- */
+
+.topBar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 12px 0;
+}
+
+.topBarInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+}
+
+.topBarLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topBarRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.homeGrid {
+  padding: 24px 0 48px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.joinCard {
+  padding: 22px;
+}
+
+.joinTitle {
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.joinTitle span {
+  color: var(--accent);
+}
+
+.joinHint {
+  margin-top: 10px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.joinRow {
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.homeVisual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.homeVisual img {
+  width: min(430px, 100%);
+  height: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+@media (max-width: 900px) {
+  .homeGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- History ---------- */
+
+.historyHeader {
+  padding: 20px 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.historyTitle {
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  font-weight: 800;
+}
+
+.historyGrid {
+  padding: 10px 0 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .historyGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .historyGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.emptyState {
+  padding: 26px;
+  text-align: center;
+  color: var(--muted);
+}
